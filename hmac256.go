@@ -1,5 +1,7 @@
 package main
 
+// https://golang.org/src/crypto/sha256/sha256.go
+
 import (
 	"crypto"
 	_ "crypto/sha256"
