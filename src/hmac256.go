@@ -10,14 +10,14 @@ import (
 
 /*
 type digest struct {
-  	h     [8]uint32
-  	x     [64]byte
-  	nx    int
-  	len   uint64
+    h     [8]uint32
+    x     [64]byte
+    nx    int
+    len   uint64
 }
 */
 
-func Hmac256(input []byte, secret []byte) (checksum []byte) {
+func Digest(input []byte, secret []byte) (checksum []byte) {
 	var (
 		opad  []byte
 		ipad  []byte
@@ -36,8 +36,8 @@ func Hmac256(input []byte, secret []byte) (checksum []byte) {
 		outer.Write(secret)
 		secret = outer.Sum(nil)
 		/*
-			hash := outer.checkSum()
-			secret = append(nil, hash[:]...)
+		   hash := outer.checkSum()
+		   secret = append(nil, hash[:]...)
 		*/
 	}
 	copy(ipad, secret)
@@ -60,21 +60,21 @@ func Hmac256(input []byte, secret []byte) (checksum []byte) {
 
 	in := inner.Sum(nil)
 	/*
-		hash := inner.checkSum()
-		in = append(nil, hash[:]...)
+	   hash := inner.checkSum()
+	   in = append(nil, hash[:]...)
 	*/
 	outer.Reset()
 	/*
-				d.h[0] = 0x6A09E667
-		  		d.h[1] = 0xBB67AE85
-		  		d.h[2] = 0x3C6EF372
-		  		d.h[3] = 0xA54FF53A
-		  		d.h[4] = 0x510E527F
-		  		d.h[5] = 0x9B05688C
-		  		d.h[6] = 0x1F83D9AB
-		  		d.h[7] = 0x5BE0CD19
-			  	d.nx = 0
-			  	d.len = 0
+	   d.h[0] = 0x6A09E667
+	     d.h[1] = 0xBB67AE85
+	     d.h[2] = 0x3C6EF372
+	     d.h[3] = 0xA54FF53A
+	     d.h[4] = 0x510E527F
+	     d.h[5] = 0x9B05688C
+	     d.h[6] = 0x1F83D9AB
+	     d.h[7] = 0x5BE0CD19
+	     d.nx = 0
+	     d.len = 0
 	*/
 	outer.Write(opad) //outer.Write(in[0:])
 	outer.Write(in)
