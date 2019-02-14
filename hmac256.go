@@ -1,4 +1,10 @@
-package main
+//
+// Information about the algorithm is available on Wikipedia
+//
+// https://en.wikipedia.org/wiki/HMAC
+//
+
+package hmac256
 
 // https://golang.org/src/crypto/sha256/sha256.go
 

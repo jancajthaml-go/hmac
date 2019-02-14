@@ -1,4 +1,4 @@
-package main
+package hmac256
 
 import "testing"
 
